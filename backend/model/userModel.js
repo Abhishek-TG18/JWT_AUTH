@@ -27,6 +27,7 @@ const userSchema = new Schema({
     username:{
         type:String,
         required:true,
+        unique:true
         
     }
 })
@@ -37,7 +38,7 @@ userSchema.methods={
             {id:this._id,username:this.username},
             process.env.SECRET,
             {
-                expiresIn:'24d'
+                expiresIn:'24h'
             }
         );
     }  

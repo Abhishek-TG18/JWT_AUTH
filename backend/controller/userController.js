@@ -29,7 +29,8 @@ exports.userSignIn = async (req,res)=>{
             const token = await getUserData.jwtToken();
             const cookieOptions = {
                 maxAge:24*60*60*1000,
-                httpOnly:true
+                httpOnly:true,
+                sameSite: 'Strict'
             }
 
             res.cookie('token',token,cookieOptions);
