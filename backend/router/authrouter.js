@@ -1,15 +1,14 @@
 const express = require('express');
 const { signupValidator } = require('../middleware/signupValidator');
-const { userSignUp, userSignIn } = require("../controller/userController");
+const { userSignUp, userSignIn ,getUserDetails} = require("../controller/userController");
 const {signInValidator} = require('../middleware/signInValidator');
-
+const {authenticateUser}= require('../middleware/authenticateUser');
 const userRoute = express.Router();
 
 userRoute.post("/signup", signupValidator, userSignUp);
 userRoute.post("/signin", signInValidator, userSignIn);
+userRoute.get("/userData",authenticateUser , getUserDetails);
 
-module.exports ={
+module.exports = userRoute;
 
- userRoute
-}
- // Correct export
+

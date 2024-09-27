@@ -48,3 +48,18 @@ exports.userSignIn = async (req,res)=>{
     }
 }
 
+exports.getUserDetails =async (req,res,next)=>{
+    const{id,username}=req.user;
+
+    try{
+        const userData = await userModel.findOne({username});
+        res.status(200).send({
+            msg:"success",
+            data:userData
+        })
+    }catch(err){
+        res.status(501).send({
+            msg:err.message
+        })
+    }
+}
